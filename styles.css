@@ -406,7 +406,7 @@ img {
 .hot-grid img {
   grid-column: span 6;
   width: 100%;
-  height: 224px;
+  height: 260px;
   object-fit: cover;
 }
 .hot-grid img:nth-child(1) {
