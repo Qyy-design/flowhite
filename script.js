@@ -243,6 +243,24 @@ langButton?.addEventListener("click", () => {
 window.addEventListener("hashchange", syncFromHash);
 window.addEventListener("scroll", updateHeader, { passive: true });
 
+document.querySelectorAll(".dibu").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = el.classList.toggle("show-tip");
+    document.querySelectorAll(".dibu.show-tip").forEach((other) => {
+      if (other !== el) other.classList.remove("show-tip");
+    });
+    if (isOpen) {
+      const tip = el.getAttribute("data-tip");
+      navigator.clipboard.writeText(tip).catch(() => {});
+    }
+  });
+});
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".dibu.show-tip").forEach((el) => el.classList.remove("show-tip"));
+});
+
 setLanguage(readSavedLanguage(), false);
 syncFromHash();
 updateHeader();
